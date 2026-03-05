@@ -1,0 +1,15 @@
+//> using platform native
+//> using scala 3.3.0
+//> using nativeVersion 0.5.9
+//> using nativeMode release-fast
+
+//> using dep xyz.matthieucourt::layoutz::0.7.0
+//> using dep com.lihaoyi::upickle::4.4.3
+//> using dep com.lihaoyi::os-lib::0.11.8
+
+//> using file "../src/MlxLlm.scala"
+//> using file "../src/LlamaConfig.scala"
+//> using file "../src/Tokenizer.scala"
+//> using file "../src/Sampling.scala"
+//> using file "../src/Sampler.scala"
+//> using file "../src/LlamaModel.scala"

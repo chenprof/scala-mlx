@@ -1,0 +1,35 @@
+# Scala / scala-cli
+.scala-build/
+target/
+*.class
+
+# Build artifacts (cmake output, compiled dylibs, installed headers)
+.build/
+
+# IDE
+.bsp/
+.metals/
+.vscode/
+
+# Downloaded model weights (too large for git)
+model/
+models/
+*.safetensors
+*.gguf
+
+# Compiled object files
+*.o
+
+# macOS
+.DS_Store
+
+# Claude Code
+.claude/
+
+# Benchmark and legacy scripts
+python-test.sh
+run-integration-tests.sh
+
+# Assets (except repo images)
+*.webp
+*.jpg
